@@ -17,26 +17,26 @@ public interface FrescoWork {
      * @param url
      * @param callBack
      */
-    public void loadImageCallBackWork(String url, PainterCallBack callBack);
+    public void loadImageCallBackWork(String url, PainterImageParams painterImageParams,PainterCallBack callBack);
 
     /**
      * 异步加载
      * @param url
      * @param callBack
      */
-    public void loadImageCallBackUi(String url, PainterCallBack callBack);
+    public void loadImageCallBackUi(String url,PainterImageParams painterImageParams, PainterCallBack callBack);
 
-    public void loadImageCallBackWork(int res, PainterCallBack callBack);
+    public void loadImageCallBackWork(int res, PainterImageParams painterImageParams,PainterCallBack callBack);
 
-    public void loadImageCallBackUi(int res, PainterCallBack callBack);
+    public void loadImageCallBackUi(int res, PainterImageParams painterImageParams,PainterCallBack callBack);
 
-    public void loadImageCallBackUi(final String url, final ResizeOptions imageSize, final PainterCallBack callBack);
+    public void loadImageCallBackUi(final String url, PainterImageParams painterImageParams,final ResizeOptions imageSize, final PainterCallBack callBack);
 
-    public void loadImageCallBackWork(final String url, final ResizeOptions imageSize, final PainterCallBack callBack);
+    public void loadImageCallBackWork(final String url, PainterImageParams painterImageParams,final ResizeOptions imageSize, final PainterCallBack callBack);
 
-    public void loadImageCallBackUi(final int res, final ResizeOptions imageSize, final PainterCallBack callBack);
+    public void loadImageCallBackUi(final int res, PainterImageParams painterImageParams,final ResizeOptions imageSize, final PainterCallBack callBack);
 
-    public void loadImageCallBackWork(final int res, final ResizeOptions imageSize, final PainterCallBack callBack);
+    public void loadImageCallBackWork(final int res, PainterImageParams painterImageParams,final ResizeOptions imageSize, final PainterCallBack callBack);
 
     /**
      * 缓存清除

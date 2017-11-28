@@ -94,51 +94,53 @@ public class FrescoPainter implements PainterWork, FrescoWork{
     }
 
     @Override
-    public void loadImageCallBackWork(String url, PainterCallBack callBack) {
-      PainterUtils.loadImageCallBackWork(mContext, url,callBack);
+    public void loadImageCallBackWork(String url,PainterImageParams painterImageParams, PainterCallBack callBack) {
+      PainterUtils.loadImageCallBackWork(mContext, painterImageParams,url,callBack);
     }
 
     @Override
-    public void loadImageCallBackUi(String url, PainterCallBack callBack) {
-      PainterUtils.loadImageCallBackUi(mContext, url,callBack);
+    public void loadImageCallBackUi(String url, PainterImageParams painterImageParams,PainterCallBack callBack) {
+      PainterUtils.loadImageCallBackUi(mContext,painterImageParams, url,callBack);
     }
 
     @Override
-    public void loadImageCallBackWork(int res, PainterCallBack callBack) {
-      PainterUtils.loadImageCallBackWork(mContext,res,callBack);
+    public void loadImageCallBackWork(int res, PainterImageParams painterImageParams,PainterCallBack callBack) {
+      PainterUtils.loadImageCallBackWork(mContext,painterImageParams,res,callBack);
     }
 
     @Override
-    public void loadImageCallBackUi(int res, PainterCallBack callBack) {
-      PainterUtils.loadImageCallBackUi(mContext,res,callBack);
+    public void loadImageCallBackUi(int res,PainterImageParams painterImageParams, PainterCallBack callBack) {
+      PainterUtils.loadImageCallBackUi(mContext,painterImageParams,res,callBack);
     }
 
     @Override
     public void loadImageCallBackUi(
         String url,
+        PainterImageParams painterImageParams,
         ResizeOptions imageSize,
         PainterCallBack callBack) {
-      PainterUtils.loadImageCallBackUi(mContext,url,imageSize,callBack);
+      PainterUtils.loadImageCallBackUi(mContext,painterImageParams,url,imageSize,callBack);
     }
 
     @Override
     public void loadImageCallBackWork(
         String url,
+        PainterImageParams painterImageParams,
         ResizeOptions imageSize,
         PainterCallBack callBack) {
-      PainterUtils.loadImageCallBackWork(mContext,url,imageSize,callBack);
+      PainterUtils.loadImageCallBackWork(mContext,painterImageParams,url,imageSize,callBack);
     }
 
     @Override
     public void loadImageCallBackUi(
-        int res, ResizeOptions imageSize, PainterCallBack callBack) {
-      PainterUtils.loadImageCallBackUi(mContext,res,imageSize,callBack);
+        int res, PainterImageParams painterImageParams,ResizeOptions imageSize, PainterCallBack callBack) {
+      PainterUtils.loadImageCallBackUi(mContext,painterImageParams,res,imageSize,callBack);
     }
 
     @Override
     public void loadImageCallBackWork(
-        int res, ResizeOptions imageSize, PainterCallBack callBack) {
-      PainterUtils.loadImageCallBackWork(mContext,res,imageSize,callBack);
+        int res,PainterImageParams painterImageParams, ResizeOptions imageSize, PainterCallBack callBack) {
+      PainterUtils.loadImageCallBackWork(mContext,painterImageParams,res,imageSize,callBack);
     }
 
     @Override

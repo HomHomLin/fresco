@@ -58,7 +58,7 @@ class PainterUtils{
         }
     }
 
-    private static void loadImage(Context context, final String url, final ImageRequest request, final PainterCallBack callBack, final
+    private static void loadImage(Context context,final String url, final ImageRequest request, final PainterCallBack callBack, final
         Executor executor){
 //        if(mBitmapCache.containsKey(request.getSourceUri()) && !mBitmapCache.get(request.getSourceUri()).isRecycled()){
 //            if(callBack != null) {
@@ -102,58 +102,66 @@ class PainterUtils{
 //        }
     }
 
-    public static void loadImageCallBackWork(Context context, final int res, final ResizeOptions imageSize, final PainterCallBack callBack){
+    public static void loadImageCallBackWork(Context context, PainterImageParams painterImageParams,final int res, final ResizeOptions imageSize, final PainterCallBack callBack){
         ImageRequest request = ImageRequestBuilder.newBuilderWithResourceId(res)
             .setResizeOptions(imageSize)
+             .setOrigin(painterImageParams==null?false:painterImageParams.isOrigin())
             .build();
         loadImage(context,"", request,callBack,CallerThreadExecutor.getInstance());
     }
 
-    public static void loadImageCallBackWork(Context context, final String url, final ResizeOptions imageSize, final PainterCallBack callBack){
+    public static void loadImageCallBackWork(Context context, PainterImageParams painterImageParams, final String url, final ResizeOptions imageSize, final PainterCallBack callBack){
         ImageRequest request = ImageRequestBuilder.newBuilderWithSource(
             Uri.parse(url))
             .setResizeOptions(imageSize)
+                .setOrigin(painterImageParams==null?false:painterImageParams.isOrigin())
             .build();
         loadImage(context,url, request,callBack,CallerThreadExecutor.getInstance());
     }
 
-    public static void loadImageCallBackWork(Context context, final int res,final PainterCallBack callBack){
+    public static void loadImageCallBackWork(Context context, PainterImageParams painterImageParams, final int res,final PainterCallBack callBack){
         ImageRequest request = ImageRequestBuilder.newBuilderWithResourceId(res)
+                .setOrigin(painterImageParams==null?false:painterImageParams.isOrigin())
             .build();
         loadImage(context,"", request,callBack,CallerThreadExecutor.getInstance());
     }
 
-    public static void loadImageCallBackWork(Context context, final String url, final PainterCallBack callBack){
+    public static void loadImageCallBackWork(Context context, PainterImageParams painterImageParams, final String url, final PainterCallBack callBack){
         ImageRequest request = ImageRequestBuilder.newBuilderWithSource(
             Uri.parse(url))
+                .setOrigin(painterImageParams==null?false:painterImageParams.isOrigin())
             .build();
         loadImage(context,url, request,callBack,CallerThreadExecutor.getInstance());
     }
 
-    public static void loadImageCallBackUi(Context context, final int res, final ResizeOptions imageSize, final PainterCallBack callBack){
+    public static void loadImageCallBackUi(Context context, PainterImageParams painterImageParams, final int res, final ResizeOptions imageSize, final PainterCallBack callBack){
         ImageRequest request = ImageRequestBuilder.newBuilderWithResourceId(res)
             .setResizeOptions(imageSize)
+                .setOrigin(painterImageParams==null?false:painterImageParams.isOrigin())
             .build();
         loadImage(context,"", request,callBack,UiThreadImmediateExecutorService.getInstance());
     }
 
-    public static void loadImageCallBackUi(Context context, final String url, final ResizeOptions imageSize, final PainterCallBack callBack){
+    public static void loadImageCallBackUi(Context context, PainterImageParams painterImageParams, final String url, final ResizeOptions imageSize, final PainterCallBack callBack){
         ImageRequest request = ImageRequestBuilder.newBuilderWithSource(
             Uri.parse(url))
             .setResizeOptions(imageSize)
+                .setOrigin(painterImageParams==null?false:painterImageParams.isOrigin())
             .build();
         loadImage(context,url, request,callBack,UiThreadImmediateExecutorService.getInstance());
     }
 
-    public static void loadImageCallBackUi(Context context, final int res, final PainterCallBack callBack){
+    public static void loadImageCallBackUi(Context context, PainterImageParams painterImageParams, final int res, final PainterCallBack callBack){
         ImageRequest request = ImageRequestBuilder.newBuilderWithResourceId(res)
+                .setOrigin(painterImageParams==null?false:painterImageParams.isOrigin())
             .build();
         loadImage(context,"", request,callBack,UiThreadImmediateExecutorService.getInstance());
     }
 
-    public static void loadImageCallBackUi(Context context, final String url, final PainterCallBack callBack){
+    public static void loadImageCallBackUi(Context context, PainterImageParams painterImageParams, final String url, final PainterCallBack callBack){
         ImageRequest request = ImageRequestBuilder.newBuilderWithSource(
             Uri.parse(url))
+                .setOrigin(painterImageParams==null?false:painterImageParams.isOrigin())
             .build();
         loadImage(context,url, request,callBack,UiThreadImmediateExecutorService.getInstance());
     }
