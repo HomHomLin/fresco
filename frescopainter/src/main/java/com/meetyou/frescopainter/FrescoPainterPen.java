@@ -37,7 +37,7 @@ public class FrescoPainterPen {
     private boolean mAnim = true;
     private int mFade = 300;
     private boolean mProgressiveRenderingEnabled = false;
-
+    private boolean isOrigin=false;
     private int mLoadMode = PainterMode.FULL_LOAD;
 
     public FrescoPainterDraweeInterceptor getFrescoPainterDraweeInterceptor() {
@@ -366,4 +366,12 @@ public class FrescoPainterPen {
         return this;
     }
 
+    public boolean isOrigin() {
+        return isOrigin;
+    }
+
+    public FrescoPainterPen setOrigin(boolean origin) {
+        isOrigin = origin;
+        return this;
+    }
 }

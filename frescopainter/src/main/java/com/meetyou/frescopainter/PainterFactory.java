@@ -31,6 +31,7 @@ public class PainterFactory {
         imageRequestBuilder
 //                .setPostprocessor(fresco.getPostProcessor())
                 .setAutoRotateEnabled(pen.getAutoRotateEnabled())
+                .setOrigin(pen.isOrigin())
                 .setProgressiveRenderingEnabled(pen.getProgressiveRenderingEnabled())
                 .setLocalThumbnailPreviewsEnabled(true);
         if (pen.getWidth() > 0 && pen.getHeight() > 0) {
@@ -70,6 +71,7 @@ public class PainterFactory {
         ImageRequestBuilder imageRequestBuilder = ImageRequestBuilder.newBuilderWithSource(uri)
 //                .setPostprocessor(fresco.getPostProcessor())
                 .setAutoRotateEnabled(pen.getAutoRotateEnabled())
+                .setOrigin(pen.isOrigin())
                 .setProgressiveRenderingEnabled(pen.getProgressiveRenderingEnabled())
                 .setLocalThumbnailPreviewsEnabled(true);
         if (pen.getWidth() > 0 && pen.getHeight() > 0) {

@@ -72,6 +72,10 @@ public class ImageRequest {
   /** Request listener to use for this image request */
   private final @Nullable RequestListener mRequestListener;
 
+
+  /** isOrigin */
+  private boolean mIsOrigin;
+
   public static ImageRequest fromFile(@Nullable File file) {
     return (file == null) ? null : ImageRequest.fromUri(UriUtil.getUriForFile(file));
   }
@@ -105,6 +109,8 @@ public class ImageRequest {
     mPostprocessor = builder.getPostprocessor();
 
     mRequestListener = builder.getRequestListener();
+
+    mIsOrigin = builder.isOrigin();
   }
 
   public CacheChoice getCacheChoice() {
@@ -213,6 +219,10 @@ public class ImageRequest {
         .toString();
   }
 
+  public boolean isOrigin() {
+    return mIsOrigin;
+  }
+
   /**
    * An enum describing the cache choice.
    */
@@ -256,4 +266,5 @@ public class ImageRequest {
       return requestLevel1.getValue() > requestLevel2.getValue() ? requestLevel1 : requestLevel2;
     }
   }
+
 }

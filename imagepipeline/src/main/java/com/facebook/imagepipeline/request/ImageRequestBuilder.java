@@ -44,6 +44,7 @@ public class ImageRequestBuilder {
   private boolean mDiskCacheEnabled = true;
   private @Nullable RequestListener mRequestListener;
   private @Nullable MediaVariations mMediaVariations = null;
+  private boolean mIsOrigin = false;
 
   /**
    * Creates a new request builder instance. The setting will be done according to the source type.
@@ -276,6 +277,15 @@ public class ImageRequestBuilder {
   /** Returns whether the use of the disk cache is enabled, which is partly dependent on the URI. */
   public boolean isDiskCacheEnabled() {
     return mDiskCacheEnabled && UriUtil.isNetworkUri(mSourceUri);
+  }
+
+  public boolean isOrigin() {
+    return mIsOrigin;
+  }
+
+  public ImageRequestBuilder setOrigin(boolean origin) {
+    mIsOrigin = origin;
+    return this;
   }
 
   /**

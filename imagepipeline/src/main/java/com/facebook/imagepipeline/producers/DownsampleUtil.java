@@ -33,7 +33,7 @@ public class DownsampleUtil {
    * @return
    */
   public static int determineSampleSize(ImageRequest imageRequest, EncodedImage encodedImage) {
-    if (!EncodedImage.isMetaDataAvailable(encodedImage)) {
+    if (!EncodedImage.isMetaDataAvailable(encodedImage) || imageRequest.isOrigin()) {
       return DEFAULT_SAMPLE_SIZE;
     }
     float ratio = determineDownsampleRatio(imageRequest, encodedImage);

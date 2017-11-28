@@ -17,7 +17,7 @@ uploadArchives {
     }else{
         depolyTypeUrl =deployToUrl
     }
-    
+    depolyTypeUrl= deployToUrl.replace("snapshots","releases")
     println "depolyTypeUrl " + depolyTypeUrl
 
     repositories.mavenDeployer {
