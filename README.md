@@ -1,3 +1,13 @@
+## 版本更新：
+
+-	0.9.8
+
+    线上版本，追溯不到代码了
+
+-	0.9.9
+
+    同步了fresco_linwuhan的2.0.5版本的内容
+
 # Fresco
 
 [![Build Status](https://circleci.com/gh/facebook/fresco.svg?style=shield)](https://circleci.com/gh/facebook/fresco)
