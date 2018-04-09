@@ -52,8 +52,9 @@ public class RoundingParams {
     return mComeFrom;
   }
 
-  public void setComeFrom(int comeFrom) {
+  public RoundingParams setComeFrom(int comeFrom) {
     mComeFrom = comeFrom;
+    return this;
   }
   /**
    *  Sets whether to round as circle.

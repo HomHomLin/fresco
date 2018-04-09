@@ -45,8 +45,9 @@ public class FrescoPainterPen {
         return mComeFrom;
     }
 
-    public void setComeFrom(int comeFrom) {
+    public FrescoPainterPen setComeFrom(int comeFrom) {
         mComeFrom = comeFrom;
+        return this;
     }
 
     public FrescoPainterDraweeInterceptor getFrescoPainterDraweeInterceptor() {

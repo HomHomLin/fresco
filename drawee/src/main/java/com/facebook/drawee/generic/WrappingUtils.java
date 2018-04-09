@@ -308,7 +308,7 @@ public class WrappingUtils {
 
       //新需求,将gif改为圆角显示
       if(mRoundDrawableInterceptor!=null){
-        RoundedBitmapDrawable roundedBitmapDrawable = mRoundDrawableInterceptor.intercept(resources,drawable,roundingParams);
+        RoundedBitmapDrawable roundedBitmapDrawable = mRoundDrawableInterceptor.intercept(resources,drawable);
         if(roundedBitmapDrawable!=null){
           return roundedBitmapDrawable;
         }
@@ -343,7 +343,7 @@ public class WrappingUtils {
     return drawable;
   }
   public static interface RoundDrawableInterceptor{
-    public RoundedBitmapDrawable intercept(Resources resources,Drawable drawable,RoundingParams params);
+    public RoundedBitmapDrawable intercept(Resources resources,Drawable drawable );
   }
   private static RoundDrawableInterceptor mRoundDrawableInterceptor;
   public static void setRoundDrawableInterceptor(RoundDrawableInterceptor interceptor){

@@ -88,7 +88,7 @@ public class Fresco {
   }
 
   private static void initRoundInterceptor(){
-    WrappingUtils.setRoundDrawableInterceptor(new WrappingUtils.RoundDrawableInterceptor() {
+    /*WrappingUtils.setRoundDrawableInterceptor(new WrappingUtils.RoundDrawableInterceptor() {
       @Override
       public RoundedBitmapDrawable intercept(Resources resources, Drawable drawable,RoundingParams roundingParams) {
         try {
@@ -117,7 +117,7 @@ public class Fresco {
         }
         return null;
       }
-    });
+    });*/
   }
   /** Initializes Drawee with the specified config. */
   private static void initializeDrawee(
