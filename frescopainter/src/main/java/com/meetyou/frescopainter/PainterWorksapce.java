@@ -119,6 +119,7 @@ class PainterWorksapce implements PainterWork{
             return;
         }
         RoundingParams roundingParams = getRoundingParams(draweeView);
+        roundingParams.setComeFrom(pen.getComeFrom());
         if(pen.isCircle()){
             //如果是圆形
             roundingParams.setRoundAsCircle(true);

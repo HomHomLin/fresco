@@ -11,8 +11,11 @@ package com.facebook.drawee.generic;
 import javax.annotation.Nullable;
 
 import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Matrix;
+import android.graphics.PixelFormat;
 import android.graphics.PointF;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
@@ -299,7 +302,22 @@ public class WrappingUtils {
       applyRoundingParams(roundedColorDrawable, roundingParams);
       return roundedColorDrawable;
     }
-    if(roundingParams != null && (roundingParams.getOverlayColor() != 0 || roundingParams.getCornersRadii() != null || roundingParams.getRoundAsCircle())) {
+    if(roundingParams.getComeFrom()!=0 && roundingParams != null && (roundingParams.getOverlayColor() != 0
+            || roundingParams.getCornersRadii() != null
+            || roundingParams.getRoundAsCircle())) {
+
+      //新需求,将gif改为圆角显示
+      if(mRoundDrawableInterceptor!=null){
+        RoundedBitmapDrawable roundedBitmapDrawable = mRoundDrawableInterceptor.intercept(resources,drawable,roundingParams);
+        if(roundedBitmapDrawable!=null){
+          return roundedBitmapDrawable;
+        }
+      }
+    }
+
+    /*if(roundingParams != null && (roundingParams.getOverlayColor() != 0
+            || roundingParams.getCornersRadii() != null
+            || roundingParams.getRoundAsCircle())) {
       //新需求,将gif改为圆角显示
       if (drawable instanceof AnimatedDrawable) {
         final AnimatedDrawable bitmapDrawable = (AnimatedDrawable) drawable;
@@ -321,8 +339,15 @@ public class WrappingUtils {
         applyRoundingParams(roundedBitmapDrawable, roundingParams);
         return roundedBitmapDrawable;
       }
-    }
+    }*/
     return drawable;
+  }
+  public static interface RoundDrawableInterceptor{
+    public RoundedBitmapDrawable intercept(Resources resources,Drawable drawable,RoundingParams params);
+  }
+  private static RoundDrawableInterceptor mRoundDrawableInterceptor;
+  public static void setRoundDrawableInterceptor(RoundDrawableInterceptor interceptor){
+    mRoundDrawableInterceptor = interceptor;
   }
 
   /**
@@ -357,5 +382,24 @@ public class WrappingUtils {
       parent = (DrawableParent) child;
     }
     return parent;
+  }
+  public static Bitmap drawableToBitmap(Drawable drawable) {
+
+    Bitmap bitmap = Bitmap.createBitmap(
+
+            drawable.getIntrinsicWidth(),
+
+            drawable.getIntrinsicHeight(),
+
+            drawable.getOpacity() != PixelFormat.OPAQUE ? Bitmap.Config.ARGB_8888
+                    : Bitmap.Config.RGB_565);
+    Canvas canvas = new Canvas(bitmap);
+    //canvas.setBitmap(bitmap);
+    drawable.setBounds(0, 0, drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight());
+
+    drawable.draw(canvas);
+
+    return bitmap;
+
   }
 }

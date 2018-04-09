@@ -46,7 +46,15 @@ public class RoundingParams {
   private float mBorderWidth = 0;
   private int mBorderColor = Color.TRANSPARENT;
   private float mPadding = 0;
+  private int mComeFrom;//0默认，1代表其他
 
+  public int getComeFrom() {
+    return mComeFrom;
+  }
+
+  public void setComeFrom(int comeFrom) {
+    mComeFrom = comeFrom;
+  }
   /**
    *  Sets whether to round as circle.
    *

@@ -12,9 +12,18 @@ package com.facebook.drawee.backends.pipeline;
 import javax.annotation.Nullable;
 
 import android.content.Context;
+import android.content.res.Resources;
+import android.graphics.drawable.AnimationDrawable;
+import android.graphics.drawable.Drawable;
 
 import com.facebook.common.logging.FLog;
+import com.facebook.drawee.drawable.Rounded;
+import com.facebook.drawee.drawable.RoundedBitmapDrawable;
+import com.facebook.drawee.generic.RoundingParams;
+import com.facebook.drawee.generic.WrappingUtils;
 import com.facebook.drawee.view.SimpleDraweeView;
+import com.facebook.imagepipeline.animated.base.AnimatedDrawable;
+import com.facebook.imagepipeline.animated.base.AnimatedDrawableSupport;
 import com.facebook.imagepipeline.core.ImagePipeline;
 import com.facebook.imagepipeline.core.ImagePipelineConfig;
 import com.facebook.imagepipeline.core.ImagePipelineFactory;
@@ -67,8 +76,49 @@ public class Fresco {
       ImagePipelineFactory.initialize(imagePipelineConfig);
     }
     initializeDrawee(context, draweeConfig);
+    initRoundInterceptor();
   }
 
+
+  static void applyRoundingParams(Rounded rounded, RoundingParams roundingParams) {
+    rounded.setCircle(roundingParams.getRoundAsCircle());
+    rounded.setRadii(roundingParams.getCornersRadii());
+    rounded.setBorder(roundingParams.getBorderColor(), roundingParams.getBorderWidth());
+    rounded.setPadding(roundingParams.getPadding());
+  }
+
+  private static void initRoundInterceptor(){
+    WrappingUtils.setRoundDrawableInterceptor(new WrappingUtils.RoundDrawableInterceptor() {
+      @Override
+      public RoundedBitmapDrawable intercept(Resources resources, Drawable drawable,RoundingParams roundingParams) {
+        try {
+          if (drawable instanceof AnimatedDrawable) {
+            final AnimatedDrawable bitmapDrawable = (AnimatedDrawable) drawable;
+            RoundedBitmapDrawable roundedBitmapDrawable =
+                    new RoundedBitmapDrawable(
+                            resources,
+                            bitmapDrawable.getAnimatedDrawableBackend().getPreviewBitmap().get(),
+                            bitmapDrawable.getPaint());
+            applyRoundingParams(roundedBitmapDrawable, roundingParams);
+            return roundedBitmapDrawable;
+          }
+          if (drawable instanceof AnimatedDrawableSupport) {
+            final AnimatedDrawableSupport bitmapDrawable = (AnimatedDrawableSupport) drawable;
+            RoundedBitmapDrawable roundedBitmapDrawable =
+                    new RoundedBitmapDrawable(
+                            resources,
+                            bitmapDrawable.getAnimatedDrawableBackend().getPreviewBitmap().get(),
+                            bitmapDrawable.getPaint());
+            applyRoundingParams(roundedBitmapDrawable, roundingParams);
+            return roundedBitmapDrawable;
+          }
+        }catch (Exception ex){
+          ex.printStackTrace();
+        }
+        return null;
+      }
+    });
+  }
   /** Initializes Drawee with the specified config. */
   private static void initializeDrawee(
       Context context,
@@ -108,4 +158,7 @@ public class Fresco {
   public static boolean hasBeenInitialized() {
     return sIsInitialized;
   }
+
+
+
 }

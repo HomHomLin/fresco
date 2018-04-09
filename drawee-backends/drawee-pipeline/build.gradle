@@ -9,6 +9,7 @@ dependencies {
     compile project(':drawee')
     compile project(':fbcore')
     compile project(':imagepipeline')
+    compile project(path: ':animated-drawable')
 }
 apply from: rootProject.file('release.gradle')
 
