@@ -8,6 +8,10 @@
 
     同步了fresco_linwuhan的2.0.5版本的内容
 
+-	0.9.11
+
+    支持在tagertApi>27显示heic或者heif的完了图片
+
 # Fresco
 
 [![Build Status](https://circleci.com/gh/facebook/fresco.svg?style=shield)](https://circleci.com/gh/facebook/fresco)

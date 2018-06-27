@@ -15,6 +15,7 @@ import java.io.InputStream;
 import java.util.Map;
 
 import android.graphics.Bitmap;
+import android.os.Build;
 
 import com.facebook.common.internal.Closeables;
 import com.facebook.common.references.CloseableReference;
@@ -66,11 +67,25 @@ public class DefaultImageDecoder implements ImageDecoder {
       } else if (imageFormat == DefaultImageFormats.WEBP_ANIMATED) {
         return decodeAnimatedWebp(encodedImage, options);
       } else if (imageFormat == ImageFormat.UNKNOWN) {
+        if (isSupportHeif() && encodedImage.getEncodedCacheKey()!=null
+                && encodedImage.getEncodedCacheKey().getUriString()!=null
+                && (encodedImage.getEncodedCacheKey().getUriString().contains(".heic") ||  encodedImage.getEncodedCacheKey().getUriString().contains(".heif"))
+                ) {
+          return decodeJpeg(encodedImage, length, qualityInfo, options);
+        }
         throw new IllegalArgumentException("unknown image format");
       }
       return decodeStaticImage(encodedImage, options);
     }
   };
+
+
+  private boolean isSupportHeif() {
+    if (/*"HUAWEI".equals(Build.MANUFACTURER) &&*/ Build.VERSION.SDK_INT > 27) {
+      return true;
+    }
+    return false;
+  }
 
   @Nullable
   private final Map<ImageFormat, ImageDecoder> mCustomDecoders;
